@@ -1,0 +1,31 @@
+<!--在页面加载完成的时候，标签head里的内容，是不会在页面中显示出来的-->
+<!DOCTYPE html>
+<!--设置文档主语言-->
+<html lang="en-US">
+<head>
+    <!--指定文档的字符编码-->
+    <meta charset="utf-8" />
+    <!--指定用哪个内核渲染页面，解决浏览器兼容问题-->
+    <!--ie跨版本兼容：如果有安装Google Chrome Frame插件，则强制使用Chrome内核。如果没有，则使用最高版本的ie内核-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--双核浏览器兼容：极速webkit|ie标准ie-stand|ie兼容ie-comp-->
+    <meta name="renderer" content="webkit" />
+    <!--兼容移动设备：当前视图的宽度等于设备的宽度，页面初始缩放值为1。-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--标题：显示在标签页上-->
+    <title>介绍 Head 标签</title>
+    <!--定义页面的作者-->
+    <meta name="author" content="chensy">
+    <!--定义页面的内容描述：显示在搜索引擎的结果页中-->
+    <meta name="description" content="其实没什么内容">
+    <!--定义文档关键字：用于搜索引擎-->
+    <meta name="keywords" content="blog">
+    <!--基本图标：显示在标签页上-->
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <!--引入样式-->
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <p>按F12，可以看到Head标签里面的内容</p>
+</body>
+</html>
