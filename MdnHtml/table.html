@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>表格模板</title>
+    <link href="../MdnStyles/table.css" rel="stylesheet" type="text/css">
+    <style>
+        tbody {
+            font-size: 90%;
+            font-style: italic;
+        }
+
+        tfoot {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Table template</h1>
+    <table>
+        <!--tr:行-->
+        <tr>
+            <!--td:单元格-->
+            <td>&nbsp;</td>
+            <!--th:标题。scope:定义了行和列的表头，col列表头，row行表头-->
+            <th scope="col">Knocky</th>
+            <th scope="col">Flor</th>
+            <th scope="col">Ella</th>
+            <th scope="col">Juan</th>
+        </tr>
+        <tr>
+            <th scope="row">Breed</th>
+            <td>Jack Russell</td>
+            <td>Poodle</td>
+            <td>Streetdog</td>
+            <td>Cocker Spaniel</td>
+        </tr>
+        <tr>
+            <th scope="row">Age</th>
+            <td>16</td>
+            <td>9</td>
+            <td>10</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <th scope="row">Owner</th>
+            <td>Mother-in-law</td>
+            <td>Me</td>
+            <td>Me</td>
+            <td>Sister-in-law</td>
+        </tr>
+        <tr>
+            <th scope="row">Eating Habits</th>
+            <td>Eats everyone's leftovers</td>
+            <td>Nibbles at food</td>
+            <td>Hearty eater</td>
+            <td>Will eat till he explodes</td>
+        </tr>
+    </table>
+    <h1>Animals table</h1>
+    <table>
+        <tr>
+            <!--colspan:让某个单元格占多个单元格的宽度-->
+            <th colspan="2">Animals</th>
+        </tr>
+        <tr>
+            <th colspan="2">Hippopotamus</th>
+        </tr>
+        <tr>
+            <!--rowspan:让某个单元格占多个单元格的高度-->
+            <th rowspan="2">Horse</th>
+            <td>Mare</td>
+        </tr>
+        <tr>
+            <td>Stallion</td>
+        </tr>
+        <tr>
+            <th colspan="2">Crocodile</th>
+        </tr>
+        <tr>
+            <th rowspan="2">Chicken</th>
+            <td>Hen</td>
+        </tr>
+        <tr>
+            <td>Rooster</td>
+        </tr>
+    </table>
+    <h1>为表格中的列提供共同的样式</h1>
+    <table>
+        <!--<col>元素要包含在 <colgroup>容器中，而 <colgroup>就在 <table> 标签的下方-->
+        <colgroup>
+            <!--使用<col>来定义“列的样式”，每一个<col>都会制定每列的样式。哪怕某列不需要样式，也要添加一个空的<col>-->
+            <col>
+            <!--span属性表示让这个样式应用往后的多少列-->
+            <col style="background-color: yellow" span="2">
+        </colgroup>
+        <tr>
+            <th>Data 1</th>
+            <th>Data 2</th>
+            <th>Data 3</th>
+        </tr>
+        <tr>
+            <td>我后面应该是黄色</td>
+            <td>不，你错了</td>
+            <td>因为引用的css文件里面有设置背景色</td>
+        </tr>
+        <tr>
+            <td>我后面应该也是黄色</td>
+            <td>不，你错了</td>
+            <td>所以这里设置的样式被覆盖了</td>
+        </tr>
+    </table>
+    <h1>高级特性</h1>
+    <table>
+        <caption>使用 caption 标签为你的表格增加一个标题，就放在 table 标签的下面</caption>
+        <!--<thead>表头-->
+        <thead>
+            <tr>
+                <th>Purchase</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Evaluation</th>
+                <th>Cost (€)</th>
+            </tr>
+        </thead>
+        <!--<tbody>正文-->
+        <tbody>
+            <tr>
+                <td>Haircut</td>
+                <td>Hairdresser</td>
+                <td>12/09</td>
+                <td>Great idea</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Lasagna</td>
+                <td>Restaurant</td>
+                <td>12/09</td>
+                <td>Regrets</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>Shoes</td>
+                <td>Shoeshop</td>
+                <td>13/09</td>
+                <td>Big regrets</td>
+                <td>65</td>
+            </tr>
+            <tr>
+                <td>Toothpaste</td>
+                <td>Supermarket</td>
+                <td>13/09</td>
+                <td>Good</td>
+                <td>5</td>
+            </tr>
+        </tbody>
+        <!--<tfoot>页脚-->
+        <tfoot>
+            <tr>
+                <td colspan="4">SUM</td>
+                <td>118</td>
+            </tr>
+        </tfoot>
+    </table>
+    <h1>嵌套表格</h1>
+    <table id="table1">
+        <tr>
+            <th>title1</th>
+            <th>title2</th>
+            <th>title3</th>
+        </tr>
+        <tr>
+            <td id="nested">
+                <table id="table2">
+                    <tr>
+                        <td>cell1</td>
+                        <td>cell2</td>
+                        <td>cell3</td>
+                    </tr>
+                </table>
+            </td>
+            <td>cell2</td>
+            <td>cell3</td>
+        </tr>
+        <tr>
+            <td>cell4</td>
+            <td>cell5</td>
+            <td>cell6</td>
+        </tr>
+    </table>
+    <h1>太阳系的行星</h1>
+    <table>
+        <caption>Data about the planets of our solar system (Planetary facts taken from <a href="http://nssdc.gsfc.nasa.gov/planetary/factsheet/">Nasa's
+                Planetary Fact Sheet - Metric</a>.)</caption>
+        <colgroup>
+            <col span="2">
+            <col style="border:2px solid black">
+        </colgroup>
+        <thead>
+            <tr>
+                <td colspan="2">&nbsp;</td>
+                <th scope="col">Name</td>
+                <th scope="col">Mass (10<sup>24</sup>kg)</th>
+                <th scope="col">Diameter (km)</th>
+                <th scope="col">Density (kg/m<sup>3</sup>)</th>
+                <th scope="col">Gravity (m/s<sup>2</sup>)</th>
+                <th scope="col">Length of day (hours)</th>
+                <th scope="col">Distance from Sun (10<sup>6</sup>km)</th>
+                <th scope="col">Mean temperature (°C)</th>
+                <th scope="col">Number of moons</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!--colgroup 和 rowgroup用于位于多个列或行的顶部的标题-->
+                <th rowspan="4" colspan="2" scope="rowgroup">Terrestial planets</th>
+                <th scope="row">Mercury</th>
+                <td>0.330</td>
+                <td>4,879</td>
+                <td>5427</td>
+                <td>3.7</td>
+                <td>4222.6</td>
+                <td>57.9</td>
+                <td>167</td>
+                <td>0</td>
+                <td>Closest to the Sun</td>
+            </tr>
+            <tr>
+                <th scope="row">Venus</th>
+
+                <td>4.87</td>
+                <td>12,104</td>
+                <td>5243</td>
+                <td>8.9</td>
+                <td>2802.0</td>
+                <td>108.2</td>
+                <td>464</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <th scope="row">Earth</th>
+                <td>5.97</td>
+                <td>12,756</td>
+                <td>5514</td>
+                <td>9.8</td>
+                <td>24.0</td>
+                <td>149.6</td>
+                <td>15</td>
+                <td>1</td>
+                <td>Our world</td>
+            </tr>
+            <tr>
+                <th scope="row">Mars</th>
+                <td>0.642</td>
+                <td>6,792</td>
+                <td>3933</td>
+                <td>3.7</td>
+                <td>24.7</td>
+                <td>227.9</td>
+                <td>-65</td>
+                <td>2</td>
+                <td>The red planet</td>
+            </tr>
+            <tr>
+                <th rowspan="4" scope="rowgroup">Jovian planets</th>
+                <th rowspan="2" scope="rowgroup">Gas giants</th>
+                <th scope="row">Jupiter</th>
+                <td>1898</td>
+                <td>142,984</td>
+                <td>1326</td>
+                <td>23.1</td>
+                <td>9.9</td>
+                <td>778.6</td>
+                <td>-110</td>
+                <td>67</td>
+                <td>The largest planet</td>
+            </tr>
+            <tr>
+                <th scope="row">Saturn</th>
+                <td>568</td>
+                <td>120,536</td>
+                <td>687</td>
+                <td>9.0</td>
+                <td>10.7</td>
+                <td>1433.5</td>
+                <td>-140</td>
+                <td>62</td>
+            </tr>
+            <tr>
+                <th rowspan="2" scope="rowgroup">Ice giants</th>
+                <th scope="row">Uranus</th>
+                <td>86.8</td>
+                <td>51,118</td>
+                <td>1271</td>
+                <td>8.7</td>
+                <td>17.2</td>
+                <td>2872.5</td>
+                <td>-195</td>
+                <td>27</td>
+            </tr>
+            <tr>
+                <th scope="row">Neptune</th>
+                <td>102</td>
+                <td>49,528</td>
+                <td>1638</td>
+                <td>11.0</td>
+                <td>16.1</td>
+                <td>4495.1</td>
+                <td>-200</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <th colspan="2" scope="rowgroup">Dwarf planets</th>
+                <th scope="row">Pluto</th>
+                <td>0.0146</td>
+                <td>2,370</td>
+                <td>2095</td>
+                <td>0.7</td>
+                <td>153.3</td>
+                <td>5906.4</td>
+                <td>-225</td>
+                <td>5</td>
+                <td>Declassified as a planet in 2006, but this <a href="http://www.usatoday.com/story/tech/2014/10/02/pluto-planet-solar-system/16578959/">remains
+                        controversial</a>.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

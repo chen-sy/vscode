@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>表单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <!--form:定义一个表单；action 属性定义了在提交表单时,应该把所收集的数据送给谁(/那个模块)(URL)去处理；method 属性定义了发送数据的HTTP方法(它可以是“get”或“post”)-->
+    <form action="" method="post">
+        <div>
+            <!--for属性引用表单小部件的id，将标签链接到表单小部件的一种正式方式-->
+            <label for="name">Name:</label>
+            <!--type属性定义了<input>属性的行为方式-->
+            <input type="text" id="name" />
+        </div>
+        <div>
+            <label for="mail">E-mail:</label>
+            <input type="email" id="mail" />
+        </div>
+        <div>
+            <label for="msg">Message:</label>
+            <textarea id="msg"></textarea>
+        </div>
+    </form>
+</body>
+
+</html>
