@@ -6,26 +6,206 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>表单</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        form {
+        /* 居中表单 */
+        margin: 0 auto;
+        width: 500px;
+        /* 显示表单的轮廓 */
+        padding: 1em;
+        border: 1px solid #CCC;
+        border-radius: 1em;
+    }
+
+form div + div {
+  margin-top: 1em;
+}
+
+label {
+  /* 确保所有label大小相同并正确对齐 */
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+
+input, textarea {
+  /* 确保所有文本输入框字体相同
+     textarea默认是等宽字体 */
+  font: 1em sans-serif;
+
+  /* 使所有文本输入框大小相同 */
+  width: 300px;
+  box-sizing: border-box;
+
+  /* 调整文本输入框的边框样式 */
+  border: 1px solid #999;
+}
+
+input:focus, textarea:focus {
+  /* 给激活的元素一点高亮效果 */
+  border-color: #000;
+}
+
+textarea {
+  /* 使多行文本输入框和它们的label正确对齐 */
+  vertical-align: top;
+
+  /* 给文本留下足够的空间 */
+  height: 5em;
+}
+
+.button {
+  /* 把按钮放到和文本输入框一样的位置 */
+  padding-left: 90px; /* 和label的大小一样 */
+}
+
+button {
+  /* 这个外边距的大小与label和文本输入框之间的间距差不多 */
+  margin-left: .5em;
+}
+    </style>
 </head>
 
 <body>
     <!--form:定义一个表单；action 属性定义了在提交表单时,应该把所收集的数据送给谁(/那个模块)(URL)去处理；method 属性定义了发送数据的HTTP方法(它可以是“get”或“post”)-->
-    <form action="" method="post">
-        <div>
-            <!--for属性引用表单小部件的id，将标签链接到表单小部件的一种正式方式-->
-            <label for="name">Name:</label>
-            <!--type属性定义了<input>属性的行为方式-->
-            <input type="text" id="name" />
+    <form id="myForm" <div>
+        <!--for属性引用表单小部件的id，将标签链接到表单小部件的一种正式方式-->
+        <label for="name">Name:</label>
+        <!--type属性定义了<input>属性的行为方式，可以从根本上改变元素-->
+        <input type="text" id="name" name="user_name" value="别看了，我只是一个默认值" />
         </div>
         <div>
             <label for="mail">E-mail:</label>
-            <input type="email" id="mail" />
+            <input type="email" id="mail" name="user_email" />
         </div>
         <div>
             <label for="msg">Message:</label>
-            <textarea id="msg"></textarea>
+            <textarea id="msg" name="user_message">别看了，我也只是一个默认值</textarea>
+        </div>
+        <div class="button">
+            <!--submit:发送表单的数据到<form>元素的action 属性所定义的网页-->
+            <button type="submit">点我提交表单</button>
+            <!--reset:将所有表单小部件重新设置为它们的默认值-->
+            <button type="reset">点我重置表单</button>
+            <!--button:不会发生任何事-->
+            <button type="button">点我啥事都没有</button>
         </div>
     </form>
+    <form>
+        <h1>Payment form</h1>
+        <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
+        <section>
+            <h2>Contact information</h2>
+            <fieldset>
+                <legend>Title</legend>
+                <ul>
+                    <li>
+                        <label for="title_1">
+                            <input type="radio" id="title_1" name="title" value="M.">
+                            Mister
+                        </label>
+                    </li>
+                    <li>
+                        <label for="title_2">
+                            <input type="radio" id="title_2" name="title" value="Ms.">
+                            Miss
+                        </label>
+                    </li>
+                </ul>
+            </fieldset>
+            <p>
+                <label for="name">
+                    <span>Name: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="text" id="name" name="username">
+            </p>
+            <p>
+                <label for="mail">
+                    <span>E-mail: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="email" id="mail" name="usermail">
+            </p>
+            <p>
+                <label for="pwd">
+                    <span>Password: </span>
+                    <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="password" id="pwd" name="password">
+            </p>
+        </section>
+        <section>
+            <h2>Payment information</h2>
+            <p>
+                <label for="card">
+                    <span>Card type:</span>
+                </label>
+                <select id="card" name="usercard">
+                    <option value="visa">Visa</option>
+                    <option value="mc">Mastercard</option>
+                    <option value="amex">American Express</option>
+                </select>
+            </p>
+            <p>
+                <label for="number">
+                    <span>Card number:</span>
+                    <strong><abbr title="required">*</abbr></strong>
+                </label>
+                <input type="number" id="number" name="cardnumber">
+            </p>
+            <p>
+                <label for="date">
+                    <span>Expiration date:</span>
+                    <strong><abbr title="required">*</abbr></strong>
+                    <em>formatted as mm/yy</em>
+                </label>
+                <input type="date" id="date" name="expiration">
+            </p>
+        </section>
+        <p> <button type="submit">Validate the payment</button> </p>
+    </form>
+    <script>
+        // 因为我们想获取DOM节点,
+        // 我们在页面加载时初始化我们的脚本.
+        window.addEventListener("load", function () {
+            // 在我们的主函数中发送数据
+            function sendData() {
+                // 要构建我们的多部分表单数据请求,
+                // 我们需要一个XMLHttpRequest 实例
+                var XHR = new XMLHttpRequest();
+
+                // 我们把这个 FormData 和表单元素绑定在一起。
+                var FD = new FormData(form);
+
+                // 我们定义了数据成功发送时会发生的事。
+                XHR.addEventListener("load", function (event) {
+                    alert(event.target.responseText);
+                });
+
+                // 我们定义了失败的情形下会发生的事
+                XHR.addEventListener("error", function (event) {
+                    alert('哎呀！出了问题。');
+                });
+
+                // 建立请求
+                XHR.open("POST", "http://ucommbieber.unl.edu/CORS/cors.php");
+                // 添加需要的HTTP报头来处理多部分表单数据POST请求
+                XHR.setRequestHeader('Content-Type', 'multipart/form-data');
+                // 发送的数据是由用户在表单中提供的
+                XHR.send(FD);
+            }
+
+            // 我们需要获取表单元素
+            var form = document.getElementById("myForm");
+
+            // 接管表单的提交事件
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                sendData();
+            });
+        });
+    </script>
 </body>
 
 </html>
