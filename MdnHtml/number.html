@@ -141,7 +141,9 @@
             // 删除lastResult段落的背景颜色。
             lastResult.style.backgroundColor = 'white';
             // 生成一个新的随机数。
-            randomNumber = Math.floor(Math.random() * 100) + 1;
+            randomNumber = Math.floor(Math.random()*(m-n))+parseInt(n);
+            document.querySelector(".content").textContent = "系统已随机生成一个在 " + n + "-" + m + " 之间的自然数，看您能否在 " + t +
+                " 次以内猜中它。每次我都会告诉您所猜的结果是高了还是低了，一直到您猜对这个数字或者达到猜测次数的上限！";
         }
     </script>
     <script>
