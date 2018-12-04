@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>猜数字游戏</title>
+
+    <style>
+        html {
+        font-family: sans-serif
+      }
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto
+      }
+      .lastResult {
+        color: white;
+        padding: 3px
+      }
+      .setrandom{
+          width: 50px;
+      }
+    </style>
+</head>
+
+<body>
+    <h1>猜数字游戏</h1>
+    <button class="startbtn">开始</button>
+    <button class="setbtn">设置</button>
+    <div style="display:none" class="form">
+        <p class="content"></p>
+        <label for="guessField">请猜数: </label>
+        <input type="text" id="guessField" class="guessField">
+        <input type="submit" value="确定" class="guessSubmit">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+    </div>
+    <div style="display:none" class="set">
+        <p>
+            <label for="fr">生成随机数的范围：从</label>
+            <input type="text" id="fr" class="setrandom" placeholder="1">
+            <label for="to">到</label>
+            <input type="text" id="to" class="setrandom" placeholder="100">
+        </p>
+        <p>
+            <label for="settime">猜测次数：</label>
+            <input type="text" id="settime" class="settime" placeholder="7">
+        </p>
+
+    </div>
+    <script>
+        // 用数学算法得出1到100之间的随机数，并赋值给 randomNumber
+        var randomNumber= Math.floor(Math.random() * 100) + 1;
+        // 获取页面上的段落
+        var guesses = document.querySelector(".guesses");
+        var lastResult = document.querySelector(".lastResult");
+        var lowOrHi = document.querySelector(".lowOrHi");
+        // 获取表单文本输入和提交按钮
+        var guessField = document.querySelector(".guessField");
+        var guessSubmit = document.querySelector(".guessSubmit");
+        // 跟踪玩家猜测的次数，初始值为 1
+        var guessCount = 1;
+        // 定义一个重置按钮
+        var resetButton;
+        // focus() 方法让光标在页面加载完毕时自动聚焦在文本框内
+        guessField.focus();
+
+        function checkGuess() {
+            // 获取输入的值，应用内置的Number()方法确保该值是一个数字
+            var userGuess = Number(guessField.value);
+            // 检查玩家是不是第一次猜数字
+            if (guessCount === 1) {
+                //如果是, 我们让 guesses 段落的文本内容等于“上次猜的数：”。
+                guesses.textContent = '上次猜的数：';
+            }
+            //将当前 userGuess 值附加到 guesses 段落的末尾
+            guesses.textContent += userGuess + ' ';
+            // 检查玩家的猜测是否等于在代码顶端设置的 randomNumber 值
+            if (userGuess === randomNumber) {
+                lastResult.textContent = '恭喜你！猜对了';
+                lastResult.style.backgroundColor = 'green';
+                lowOrHi.textContent = '';
+                setGameOver();
+            }
+            // 检查这个回合是否是玩家的最后一个回合 
+            else if (guessCount === parseInt(t)) {
+                lastResult.textContent = '!!!GAME OVER!!!';
+                setGameOver();
+            }
+            // 玩家尚未猜对，但是还有机会
+            else {
+                lastResult.textContent = '你猜错了！';
+                lastResult.style.backgroundColor = 'red';
+                // 判断并告诉玩家猜测的数字是高了还是低了
+                if (userGuess < randomNumber) {
+                    lowOrHi.textContent = '你猜低了！';
+                } else if (userGuess > randomNumber) {
+                    lowOrHi.textContent = '你猜高了';
+                }
+            }
+            // 玩家已经消耗一次机会
+            guessCount++;
+            // 将表单文本域的值清空，重新聚焦于此，准备下一轮游戏。
+            guessField.value = '';
+            guessField.focus();
+        }
+        // 设置事件监听器，当 guessSubmit 被点击时，一个名为 checkGuess()的函数将被调用
+        guessSubmit.addEventListener('click', checkGuess);
+
+        function setGameOver() {
+            // 禁用表单文本输入和按钮
+            guessField.disabled = true;
+            guessSubmit.disabled = true;
+            // 创建一个新的<button>元素，设置它的文本为“开始新游戏”，并把它添加到当前HTML的底部
+            resetButton = document.createElement('button');
+            resetButton.textContent = 'Start new game';
+            document.querySelector(".form").appendChild(resetButton);
+            // 设置事件监听器，当 resetButton 被点击时，一个名为 resetGame()的函数将被调用
+            resetButton.addEventListener('click', resetGame);
+        }
+
+        function resetGame() {
+            // 将玩家猜测次数重置为 1。
+            guessCount = 1;
+            // 通过循环迭代，删除每个段落的文本内容。
+            var resetParas = document.querySelectorAll('.form p');
+            for (var i = 0; i < resetParas.length; i++) {
+                resetParas[i].textContent = '';
+            }
+            // 删除重置按钮。
+            resetButton.parentNode.removeChild(resetButton);
+            // 启用表单元素，清空文本域并聚焦于此，准备接受新猜测的数字。
+            guessField.disabled = false;
+            guessSubmit.disabled = false;
+            guessField.value = '';
+            guessField.focus();
+            // 删除lastResult段落的背景颜色。
+            lastResult.style.backgroundColor = 'white';
+            // 生成一个新的随机数。
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+        }
+    </script>
+    <script>
+        var n = 1,
+            m = 100,
+            t = 7;
+        var startbtn = document.querySelector(".startbtn");
+        var setbtn = document.querySelector(".setbtn");
+        var df = document.querySelector(".form");
+        var ds = document.querySelector(".set");
+        startbtn.addEventListener('click', start)
+        setbtn.addEventListener('click', set);
+        var fr = document.querySelector("#fr");
+        var to =document.querySelector("#to");
+        var settime = document.querySelector(".settime");
+
+        function start() {
+            ds.style.display = "none";
+            var content = document.querySelector(".content");
+            content.textContent = "系统已随机生成一个在 " + n + "-" + m + " 之间的自然数，看您能否在 " + t +
+                " 次以内猜中它。每次我都会告诉您所猜的结果是高了还是低了，一直到您猜对这个数字或者达到猜测次数的上限！";
+            if(n>m){
+                var a=n;
+                n=m;
+                m=a;
+            }
+            randomNumber=Math.floor(Math.random()*(m-n))+parseInt(n);
+            df.style.display = "";
+        }
+
+        function set() {
+            df.style.display = "none";
+            ds.style.display = "";
+        }
+        fr.onchange=function(){
+            n=fr.value;
+        }
+        to.onchange=function(){
+            m=to.value;
+            /**
+            if(m<=n){
+                n=1,m=100;
+                fr.value="";
+                to.value="";
+                alert("初始值不能大于结束值");
+                fr.focus();
+            }
+            */
+        }
+        settime.onchange=function(){
+            t = settime.value;
+        }
+    </script>
+</body>
+
+</html>
