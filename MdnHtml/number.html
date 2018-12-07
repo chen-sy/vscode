@@ -87,7 +87,7 @@
                 setGameOver();
             }
             // 检查这个回合是否是玩家的最后一个回合 
-            else if (guessCount === parseInt(t)) {
+            else if (guessCount === Number(t)) {
                 lastResult.textContent = '!!!GAME OVER!!!';
                 setGameOver();
             }
